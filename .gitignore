@@ -10,4 +10,5 @@ __pycache__/
 frontend/dist/
 frontend/.vinext/
 frontend/node_modules/
+.frontend-git-backup/
 *.log
