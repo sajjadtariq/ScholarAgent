@@ -1,0 +1,42 @@
+[project]
+name = "pdf-research-chat-api"
+version = "1.0.0"
+description = "Small PDF-grounded chat API"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.34,<1",
+  "python-multipart>=0.0.20,<1",
+  "python-dotenv>=1.0,<2",
+  "pypdf>=5.3,<6",
+  "google-genai>=1.67,<2",
+  "numpy>=2.2,<3",
+  "rank-bm25>=0.2.2,<1",
+  "sentence-transformers>=3.4,<6",
+]
+
+[project.optional-dependencies]
+dev = ["httpx>=0.28,<1", "mypy>=1.15", "pytest>=8.3", "pytest-asyncio>=0.25", "ruff>=0.9"]
+
+[tool.setuptools]
+py-modules = ["main", "ingestion", "retrieval", "reranker", "generation", "store"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+follow_imports = "skip"
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["rank_bm25"]
+ignore_missing_imports = true
